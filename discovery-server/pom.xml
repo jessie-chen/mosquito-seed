@@ -20,10 +20,31 @@
 
     <build>
         <plugins>
+
+            <!-- copy dependencies -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <!-- Set up JAR manifest -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>org.mosquito.seed.discovery.Application</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 
