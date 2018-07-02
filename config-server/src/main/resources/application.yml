@@ -1,0 +1,14 @@
+server:
+  port: 8888
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/discovery-server/
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jessie-chen/mosquito-seed-config-repo.git

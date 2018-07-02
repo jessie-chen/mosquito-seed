@@ -12,6 +12,8 @@
         <module>discovery-server</module>
         <module>edge-server</module>
         <module>config-server</module>
+        <module>auth-center</module>
+        <module>demo-backend-service</module>
     </modules>
 
     <parent>
@@ -31,6 +33,7 @@
         <mysql.version>6.0.6</mysql.version>
         <csrf-token-filter.version>1.1</csrf-token-filter.version>
         <guava.version>21.0</guava.version>
+        <mosquito.version>1.0-SNAPSHOT</mosquito.version>
         <dockerfile-maven-version>1.4.3</dockerfile-maven-version>
         <docker.image.prefix>127.0.0.1:5000</docker.image.prefix>
     </properties>
@@ -88,6 +91,17 @@
                 <version>${guava.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.allanditzel</groupId>
+                <artifactId>spring-security-csrf-token-filter</artifactId>
+                <version>1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mosquito</groupId>
+                <artifactId>mosquito-security</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

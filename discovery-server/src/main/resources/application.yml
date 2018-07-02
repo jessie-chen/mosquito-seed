@@ -7,4 +7,4 @@ eureka:
     fetch-registry: false
     register-with-eureka: false
     service-url:
-      default-zone: http://${discoveryserver.instance.hostname}:${server.port}/discoveryserver/
+      default-zone: http://${discoveryserver.instance.hostname}:${server.port}/discovery-server/

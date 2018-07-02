@@ -20,7 +20,6 @@
 
     <build>
         <plugins>
-
             <!-- copy dependencies -->
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>

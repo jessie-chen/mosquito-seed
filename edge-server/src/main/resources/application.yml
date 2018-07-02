@@ -1,0 +1,22 @@
+server:
+  port: 8080
+zuul:
+  routes:
+    auth:
+      path: /uaa/**
+      serviceId: auth-center
+    demo-backend:
+      path: /demo/**
+      serviceId: demo-backend
+  sensitive-headers:
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/discovery-server/
+logging:
+  level:
+    org.mosquito: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+oauth2-header-filter:
+  ignore-paths: /uaa/**
