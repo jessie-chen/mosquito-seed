@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demo
+      MYSQL_USER: jc
+      MYSQL_PASSWORD: jc
+    volumes:
+      - "/e/jc/code/mosquito/mosquito-seed/db/mysql:/docker-entrypoint-initdb.d"
+#      - "../db/mysql:/docker-entrypoint-initdb.d"
+#      - "/e/volumes/mysql:/var/lib/mysql"
+#      - "../db/mysql/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql:ro"
+#      - "../db/mysql/2_data.sql:/docker-entrypoint-initdb.d/2_data.sql:ro"
