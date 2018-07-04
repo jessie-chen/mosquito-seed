@@ -12,7 +12,7 @@ zuul:
 eureka:
   client:
     service-url:
-      default-zone: http://localhost:8761/discovery-server/
+      default-zone: http://discovery-server:8761/eureka/
 logging:
   level:
     org.mosquito: DEBUG

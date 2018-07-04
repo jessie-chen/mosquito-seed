@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  discovery-server:
+    image: 127.0.0.1:5000/discovery-server:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "8761:8761"
+    networks:
+      - app_net
+  config-server:
+    image: 127.0.0.1:5000/config-server:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "8888:8888"
+    depends_on:
+      - discovery-server
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18761"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+networks:
+  app_net:

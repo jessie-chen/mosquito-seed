@@ -16,8 +16,5 @@ services:
       MYSQL_USER: jc
       MYSQL_PASSWORD: jc
     volumes:
-      - "/e/jc/code/mosquito/mosquito-seed/db/mysql:/docker-entrypoint-initdb.d"
-#      - "../db/mysql:/docker-entrypoint-initdb.d"
-#      - "/e/volumes/mysql:/var/lib/mysql"
-#      - "../db/mysql/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql:ro"
-#      - "../db/mysql/2_data.sql:/docker-entrypoint-initdb.d/2_data.sql:ro"
+      - "../db/mysql:/docker-entrypoint-initdb.d"
+
