@@ -12,7 +12,7 @@ zuul:
 eureka:
   client:
     service-url:
-      default-zone: http://${EUREKA_HOSTNAME:localhost}:8761/eureka/
+      defaultZone: http://${EUREKA_HOSTNAME:localhost}:8761/eureka/
 logging:
   level:
     org.mosquito: DEBUG

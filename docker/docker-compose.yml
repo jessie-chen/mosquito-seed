@@ -5,6 +5,7 @@ services:
     image: redis
     ports:
       - "6379:6379"
+
   db:
     image: mysql
     restart: always
@@ -18,3 +19,75 @@ services:
     volumes:
       - "../db/mysql:/docker-entrypoint-initdb.d"
 
+  discovery-server:
+      image: 127.0.0.1:5000/discovery-server:1.0-SNAPSHOT
+      restart: always
+      ports:
+        - "8761:8761"
+      environment:
+        - "EUREKA_HOSTNAME=discovery-server"
+      networks:
+        - app_net
+
+  config-server:
+    image: 127.0.0.1:5000/config-server:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "8888:8888"
+    depends_on:
+      - discovery-server
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://discovery-server:8761"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  edge-server:
+    image: 127.0.0.1:5000/config-server:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery-server
+      - config-server
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
+    networks:
+      - app_net
+
+  auth-center:
+    image: 127.0.0.1:5000/auth-center:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "10001:10001"
+    depends_on:
+      - discovery-server
+      - config-server
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
+      - "MYSQL_HOSTNAME=db"
+      - "REDIS_HOSTNAME=redis"
+    networks:
+      - app_net
+
+  demo-backend-service:
+    image: 127.0.0.1:5000/demo-backend-service:1.0-SNAPSHOT
+    restart: always
+    ports:
+      - "10002:10002"
+    depends_on:
+      - discovery-server
+      - config-server
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
+      - "MYSQL_HOSTNAME=db"
+      - "REDIS_HOSTNAME=redis"
+    networks:
+      - app_net
+
+networks:
+  app_net:
