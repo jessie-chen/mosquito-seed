@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - "8761:8761"
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
     networks:
       - app_net
   config-server:
@@ -15,10 +17,12 @@ services:
       - "8888:8888"
     depends_on:
       - discovery-server
+    environment:
+      - "EUREKA_HOSTNAME=discovery-server"
     networks:
       - app_net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:18761"]
+      test: ["CMD", "curl", "-f", "http://discovery-server:8761"]
       interval: 30s
       timeout: 30s
       retries: 3
