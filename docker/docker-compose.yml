@@ -47,7 +47,7 @@ services:
       retries: 3
 
   edge-server:
-    image: 127.0.0.1:5000/config-server:1.0-SNAPSHOT
+    image: 127.0.0.1:5000/edge-server:1.0-SNAPSHOT
     restart: always
     ports:
       - "8080:8080"

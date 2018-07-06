@@ -13,12 +13,13 @@
 :auth_basic := (format "Authorization: Basic %s" (base64-encode-string (format "%s:%s" username password) t))
 :auth_bearer := (format "Authorization: Bearer %s" access_token)
 
-:port := 8080
+
+:host = 127.0.0.1:18080
+
 # -------------------- Access token --------------------
 
 # grant_type: client credential
-POST http://127.0.0.1::port/uaa/oauth/token?grant_type=client_credentials&client_id=:client_id&client_secret=:client_secret&scope=read
+POST http://:host/uaa/oauth/token?grant_type=client_credentials&client_id=:client_id&client_secret=:client_secret&scope=read
 
 # grant_type: password
-POST http://127.0.0.1::port/uaa/oauth/token?grant_type=password&username=:username&password=:password&client_id=:client_id&client_secret=:client_secret&scope=all
-
+POST http://:host/uaa/oauth/token?grant_type=password&username=:username&password=:password&client_id=:client_id&client_secret=:client_secret&scope=all
