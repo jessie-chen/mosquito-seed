@@ -63,7 +63,7 @@ services:
     image: 127.0.0.1:5000/auth-center:1.0-SNAPSHOT
     restart: always
     ports:
-      - "10001:10001"
+      - "7001:7001"
     depends_on:
       - discovery-server
       - config-server
@@ -78,7 +78,7 @@ services:
     image: 127.0.0.1:5000/demo-backend-service:1.0-SNAPSHOT
     restart: always
     ports:
-      - "10002:10002"
+      - "7002:7002"
     depends_on:
       - discovery-server
       - config-server

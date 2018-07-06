@@ -1,0 +1,24 @@
+# Variables
+
+:client_id := (setq client_id "webapp")
+:client_secret := (setq client_secret "000000")
+
+:username := (setq username "admin")
+:password := (setq password "admin")
+# :username := (setq username "user")
+# :password := (setq password "71b6831a-897e-44d1-8f49-b37584d296c7")
+
+:access_token := (setq access_token "718b9f61-969d-4b65-bc43-ece4ae5ec20e")
+
+:auth_basic := (format "Authorization: Basic %s" (base64-encode-string (format "%s:%s" username password) t))
+:auth_bearer := (format "Authorization: Bearer %s" access_token)
+
+:port := 8080
+# -------------------- Access token --------------------
+
+# grant_type: client credential
+POST http://127.0.0.1::port/uaa/oauth/token?grant_type=client_credentials&client_id=:client_id&client_secret=:client_secret&scope=read
+
+# grant_type: password
+POST http://127.0.0.1::port/uaa/oauth/token?grant_type=password&username=:username&password=:password&client_id=:client_id&client_secret=:client_secret&scope=all
+

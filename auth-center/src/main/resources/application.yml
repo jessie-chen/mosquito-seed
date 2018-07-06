@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:10001}
+  port: ${SERVER_PORT:7001}
 
 eureka:
   client:
@@ -11,7 +11,7 @@ eureka:
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOSTNAME:localhost}:3306/demo?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://${MYSQL_HOSTNAME:localhost}:3306/demo?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
     username: jc
     password: jc
     hikari:
