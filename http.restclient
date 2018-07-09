@@ -23,3 +23,4 @@ POST http://:host/uaa/oauth/token?grant_type=client_credentials&client_id=:clien
 
 # grant_type: password
 POST http://:host/uaa/oauth/token?grant_type=password&username=:username&password=:password&client_id=:client_id&client_secret=:client_secret&scope=all
+

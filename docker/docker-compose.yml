@@ -5,9 +5,11 @@ services:
     image: redis
     ports:
       - "6379:6379"
+    networks:
+      - app_net
 
   db:
-    image: mysql
+    image: mysql:5.7
     restart: always
     ports:
       - "3306:3306"
@@ -18,6 +20,8 @@ services:
       MYSQL_PASSWORD: jc
     volumes:
       - "../db/mysql:/docker-entrypoint-initdb.d"
+    networks:
+      - app_net
 
   discovery-server:
       image: 127.0.0.1:5000/discovery-server:1.0-SNAPSHOT
